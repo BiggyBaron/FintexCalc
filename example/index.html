@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Table V02</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	
+
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ RESTYLE TAG ]*/
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: sans-serif;
+}
+
+/* ------------------------------------ */
+a {
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/* ------------------------------------ */
+h1,h2,h3,h4,h5,h6 {margin: 0px;}
+
+p {margin: 0px;}
+
+ul, li {
+	margin: 0px;
+	list-style-type: none;
+}
+
+
+/* ------------------------------------ */
+input {
+  display: block;
+	outline: none;
+  border: none !important;
+  width: 80%;
+  background: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+textarea {
+  display: block;
+  outline: none;
+}
+
+textarea:focus, input:focus {
+  border-color: transparent !important;
+}
+
+/* ------------------------------------ */
+button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+iframe {
+	border: none !important;
+}
+
+
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+
+.limiter {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container-table100 {
+  width: 100%;
+  min-height: 100vh;
+  background: #c4d3f6;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 33px 30px;
+}
+
+.wrap-table100 {
+  width: 3200px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  display: table;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .table {
+    display: block;
+  }
+}
+
+.row {
+  display: table-row;
+  background: #fff;
+}
+
+.row.header {
+  color: #ffffff;
+  background: #6c7ae0;
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    display: block;
+  }
+
+  .row.header {
+    padding: 0;
+    height: 0px;
+  }
+
+  .row.header .cell {
+    display: none;
+  }
+
+  .row .cell:before {
+    font-family: Poppins-Bold;
+    font-size: 12px;
+    color: #808080;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: unset !important;
+
+    margin-bottom: 13px;
+    content: attr(data-title);
+    min-width: 98px;
+    display: block;
+  }
+}
+
+.cell {
+  display: table-cell;
+}
+
+@media screen and (max-width: 768px) {
+  .cell {
+    display: block;
+  }
+}
+
+.row .cell {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #666666;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.row.header .cell {
+  font-family: Poppins-Regular;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 19px;
+  padding-bottom: 19px;
+}
+
+.row .cell:nth-child(1) {
+  width: 360px;
+  padding-left: 40px;
+}
+
+.row .cell:nth-child(2) {
+  width: 160px;
+}
+
+.row .cell:nth-child(3) {
+  width: 160px;
+}
+
+.row .cell:nth-child(4) {
+  width: 160px;
+}
+
+.row .cell:nth-child(5) {
+  width: 160px;
+}
+
+.row .cell:nth-child(6) {
+  width: 160px;
+}
+.row .cell:nth-child(7) {
+  width: 160px;
+}
+.row .cell:nth-child(8) {
+  width: 160px;
+}
+.row .cell:nth-child(9) {
+  width: 160px;
+}
+.row .cell:nth-child(10) {
+  width: 160px;
+}
+.row .cell:nth-child(11) {
+  width: 160px;
+}
+.row .cell:nth-child(12) {
+  width: 160px;
+}
+.row .cell:nth-child(13) {
+  width: 160px;
+}
+
+
+
+.table, .row {
+  width: 100% !important;
+}
+
+.row:hover {
+  background-color: #ececff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .row {
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 18px;
+    padding-top: 30px;
+    padding-right: 15px;
+    margin: 0;
+  }
+  
+  .row .cell {
+    border: none;
+    padding-left: 30px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .row .cell:nth-child(1) {
+    padding-left: 30px;
+  }
+  
+  .row .cell {
+    font-family: Poppins-Regular;
+    font-size: 18px;
+    color: #555555;
+    line-height: 1.2;
+    font-weight: unset !important;
+  }
+
+  .table, .row, .cell {
+    width: 100% !important;
+  }
+}
+	</style>
+	
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+					<div class="table">
+
+						<div class="row header">
+							<div class="cell">
+								Месяцы
+							</div>
+							<div class="cell">
+								1
+							</div>
+							<div class="cell">
+								2
+							</div>
+							<div class="cell">
+								3
+							</div>
+							<div class="cell">
+								4
+							</div>
+							<div class="cell">
+								5
+							</div>
+							<div class="cell">
+								6
+							</div>
+							<div class="cell">
+								7
+							</div>
+							<div class="cell">
+								8
+							</div>
+							<div class="cell">
+								9
+							</div>
+							<div class="cell">
+								10
+							</div>
+							<div class="cell">
+								11
+							</div>
+							<div class="cell">
+								12
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" id="income0">
+								Выручка
+							</div>
+							<div class="cell">
+								<input type="number" id="income1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Увеличение выручки в процентах
+							</div>
+							<div class="cell">
+								<input type="number" id="rost1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Переменные расходы
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Маржинальный доход
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Постоянные расходы
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prashody12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								EBITDA
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="ebitda12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Расходы по займам
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Налог на общий доход
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Налог на прибыль
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="pnalog12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Амортизация в процентах
+							</div>
+							<div class="cell">
+								<input type="number" id="amor1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row header">
+							<div class="cell">
+								Прибыль
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+						</div>
+
+					</div>
+			</div>
+		</div>
+	</div>
+
+	<script language="javascript">
+		"use strict";
+		// alert(document.getElementById("income1").value);
+
+		document.getElementById('income0').addEventListener( 'click', calculateIncome );
+		document.getElementById('income1').addEventListener( 'change', calculateIncome );
+		document.getElementById('rost1').addEventListener( 'change', calculateRost );
+
+		function calculateIncome(){
+			
+			var income1 = document.getElementById("income1").value;
+			var rosts = [];
+
+			for( let i = 0; i<= 11; i++){
+				if(document.getElementById("rost" + (i+1).toString()).value){
+					rosts[i] = parseInt(document.getElementById("rost" + (i+1).toString()).value);
+				}
+				else{
+					rosts[i] = 0;
+				}
+			}
+			iterateRost(0, rosts, iterateRost);
+		}
+
+		function iterateRost(i, rosts, callback){
+			if(i <= 10){
+				let old = document.getElementById("income" + (i+1).toString()).value;
+				let pred = parseInt(old);
+				pred = pred;
+				let n = rosts[i]*pred/100;
+				n = n;
+				let sum = pred + n;
+				sum = sum;
+				document.getElementById("income" + (i+2).toString()).value = sum.toString();
+				callback(i+1, rosts, iterateRost);
+			}
+		}
+
+		function calculateRost(){
+			var rost1 = document.getElementById("rost1").value
+			for( let i = 1; i<= 11; i++){
+				document.getElementById("rost" + (i+1).toString()).value = rost1;
+			}
+			document.getElementById('income0').click();
+		}
+
+	</script>
+</body>
+</html>
