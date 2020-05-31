@@ -682,7 +682,11 @@ iframe {
 								EBITDA
 							</div>
 							<div class="cell">
-								
+								<button id="download" onclick=" download_table_as_csv('results')">
+									<span class="material-icons" style="color: white;">
+										cloud_download
+									</span>
+								</button>
 							</div>
 							<div class="cell" id="ebitda1">
 								-
@@ -1113,6 +1117,7 @@ iframe {
 		}
 
 		document.getElementById('income0').addEventListener( 'click', calculateIncomeBut );
+		// document.getElementById('download').addEventListener( 'click', download_table_as_csv("results") );
 
 		function calculateIncome(){
 			
@@ -1315,7 +1320,6 @@ iframe {
 			document.body.removeChild(link);
 		}
 
-		download_table_as_csv("results");
 
 	</script>
 </body>
