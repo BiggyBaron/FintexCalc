@@ -113,7 +113,7 @@ iframe {
 .container-table100 {
   width: 100%;
   min-height: 100vh;
-  background: #c4d3f6;
+  background: #eec7ff;
 
   display: -webkit-box;
   display: -webkit-flex;
@@ -151,7 +151,7 @@ iframe {
 
 .row.header {
   color: #ffffff;
-  background: #6c7ae0;
+  background: #6A3083;
 }
 
 @media screen and (max-width: 768px) {
@@ -1105,19 +1105,19 @@ iframe {
 			<td id="tpoprashody12"></td>
 		</tr>
 		<tr>
-			<td id="ebitda0">EBITDA</td>
-			<td id="ebitda1"></td>
-			<td id="ebitda2"></td>
-			<td id="ebitda3"></td>
-			<td id="ebitda4"></td>
-			<td id="ebitda5"></td>
-			<td id="ebitda6"></td>
-			<td id="ebitda7"></td>
-			<td id="ebitda8"></td>
-			<td id="ebitda9"></td>
-			<td id="ebitda10"></td>
-			<td id="ebitda11"></td>
-			<td id="ebitda12"></td>
+			<td id="tebitda0">EBITDA</td>
+			<td id="tebitda1"></td>
+			<td id="tebitda2"></td>
+			<td id="tebitda3"></td>
+			<td id="tebitda4"></td>
+			<td id="tebitda5"></td>
+			<td id="tebitda6"></td>
+			<td id="tebitda7"></td>
+			<td id="tebitda8"></td>
+			<td id="tebitda9"></td>
+			<td id="tebitda10"></td>
+			<td id="tebitda11"></td>
+			<td id="tebitda12"></td>
 		</tr>
 	</tbody>
 	</table>
@@ -1148,6 +1148,7 @@ iframe {
 		function calculateIncome(){
 			
 			var income1 = document.getElementById("income1").value;
+			document.getElementById("tincome1").innerHTML = income1;
 			var rosts = [];
 
 			for( let i = 0; i<= 11; i++){
@@ -1173,6 +1174,7 @@ iframe {
 				let el = document.getElementById("income" + (i+2).toString()).value;
 				if(el == ""){
 					document.getElementById("income" + (i+2).toString()).value = sum.toFixed(2).toString();
+					document.getElementById("tincome" + (i+2).toString()).innerHTML = sum.toFixed(2).toString();
 				}
 				calcAllFree();
 				callback(i+1, rosts, iterateRost);
@@ -1182,6 +1184,7 @@ iframe {
 		function calculateIncomeBut(){
 			
 			var income1 = document.getElementById("income1").value;
+			document.getElementById("tincome1").innerHTML = income1;
 			var rosts = [];
 
 			for( let i = 0; i<= 11; i++){
@@ -1206,6 +1209,7 @@ iframe {
 				sum = sum;
 				let el = document.getElementById("income" + (i+2).toString()).value;
 				document.getElementById("income" + (i+2).toString()).value = sum.toFixed(2).toString();
+				document.getElementById("tincome" + (i+2).toString()).innerHTML = sum.toFixed(2).toString();
 				calcAllFree();
 				callback(i+1, rosts, iterateRostBut);
 			}
@@ -1213,9 +1217,11 @@ iframe {
 
 		function calculateRost(){
 			var rost1 = document.getElementById("rost1").value
+			document.getElementById("trost1").innerHTML = rost1;
 			for( let i = 1; i<= 11; i++){
 				if(document.getElementById("rost" + (i+1).toString()).value == ''){
 					document.getElementById("rost" + (i+1).toString()).value = rost1;
+					document.getElementById("trost" + (i+1).toString()).innerHTML = rost1;
 				}
 			}
 			document.getElementById('income0').click();
@@ -1223,43 +1229,53 @@ iframe {
 
 		function calculateRostBut(){
 			var rost1 = document.getElementById("rost1").value
+			document.getElementById("trost1").innerHTML = rost1;
 			for( let i = 1; i<= 11; i++){
 				document.getElementById("rost" + (i+1).toString()).value = rost1;
+				document.getElementById("trost" + (i+1).toString()).innerHTML = rost1;
 			}
 			document.getElementById('income0').click();
 		}
 
 		function prashodyBut(){
 			let prashod1 = document.getElementById("prashody1").value;
+			document.getElementById("tprashody1").innerHTML = prashod1;
 			for( let i = 1; i<= 12; i++){
 				document.getElementById("prashody" + (i).toString()).value = prashod1;
+				document.getElementById("tprashody" + (i).toString()).innerHTML = prashod1;
 			}
 			calcAllFree();
 		}
 
 		function rashodyBut(){
 			var rashod1 = document.getElementById("rashody1").value;
+			document.getElementById("trashody1").innerHTML = rashod1;
 			// console.log("SHIT!");
 			for( let i = 1; i<= 12; i++){
 				document.getElementById("rashody" + (i).toString()).value = rashod1;
+				document.getElementById("trashody" + (i).toString()).innerHTML = rashod1;
 			}
 			calcAllFree();
 		}
 
 		function porashodyBut(){
 			var porashod1 = document.getElementById("porashody1").value;
+			document.getElementById("tporashody1").innerHTML = porashod1;
 			// console.log("SHIT!");
 			for( let i = 1; i<= 12; i++){
 				document.getElementById("porashody" + (i).toString()).value = porashod1;
+				document.getElementById("tporashody" + (i).toString()).innerHTML = porashod1;
 			}
 			calcAllFree();
 		}
 
 		function poprashodyBut(){
 			var poprashod1 = document.getElementById("poprashody1").value;
+			document.getElementById("tpoprashody1").innerHTML = poprashod1;
 			// console.log("SHIT!");
 			for( let i = 1; i<= 12; i++){
 				document.getElementById("poprashody" + (i).toString()).value = poprashod1;
+				document.getElementById("tpoprashody" + (i).toString()).innerHTML = poprashod1;
 			}
 			calcAllFree();
 		}
@@ -1305,12 +1321,14 @@ iframe {
 				let marja = income - rashod - income*prashod/100;
 
 				document.getElementById("mdohod" + (i).toString()).value = marja.toFixed(2).toString();
+				document.getElementById("tmdohod" + (i).toString()).innerHTML = marja.toFixed(2).toString();
 
 				let ebitda = marja - porashod - income*poprashod/100;
 
 				console.log(ebitda);
 
 				document.getElementById("ebitda" + (i).toString()).innerText = ebitda.toFixed(2).toString();
+				document.getElementById("tebitda" + (i).toString()).innerText = ebitda.toFixed(2).toString();
 
 			}
 
