@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+	<style>
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	</style>
+	<style>
+	
+
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ RESTYLE TAG ]*/
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: sans-serif;
+	background: #eec7ff;
+}
+
+/* ------------------------------------ */
+a {
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/* ------------------------------------ */
+h1,h2,h3,h4,h5,h6 {margin: 0px;}
+
+p {margin: 0px;}
+
+ul, li {
+	margin: 0px;
+	list-style-type: none;
+}
+
+
+/* ------------------------------------ */
+input {
+  display: block;
+	outline: none;
+  border: none !important;
+  width: 80%;
+  background: none;
+}
+
+.intext {
+	display: inline;
+	outline: none;
+  border: none !important;
+  width: 5%;
+  text-align: right;
+  background: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+textarea {
+  display: block;
+  outline: none;
+}
+
+textarea:focus, input:focus {
+  border-color: transparent !important;
+}
+
+/* ------------------------------------ */
+button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+iframe {
+	border: none !important;
+}
+
+
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+
+.limiter {
+  width: 1800px;
+  margin: 0 auto;
+}
+
+.container-table100 {
+  width: 1800px;
+  min-height: 100vh;
+  background: #eec7ff;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 33px 30px;
+}
+
+.wrap-table100 {
+  width: 1800px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.container-table20 {
+  width: 1000px;
+  /* min-height: 100vh; */
+  background: #eec7ff;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 33px 30px;
+}
+
+.wrap-table20 {
+  width: 1000px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  display: table;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .table {
+    display: block;
+  }
+}
+
+.row {
+  display: table-row;
+  background: #fff;
+}
+
+.row.header {
+  color: #ffffff;
+  background: #6A3083;
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    display: block;
+  }
+
+  .row.header {
+    padding: 0;
+    height: 0px;
+  }
+
+  .row.header .cell {
+    display: none;
+  }
+
+  .row .cell:before {
+    font-family: Poppins-Bold;
+    font-size: 12px;
+    color: #808080;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: unset !important;
+
+    margin-bottom: 13px;
+    content: attr(data-title);
+    min-width: 98px;
+    display: block;
+  }
+}
+
+.cell {
+  display: table-cell;
+}
+
+@media screen and (max-width: 768px) {
+  .cell {
+    display: block;
+  }
+}
+
+.row .cell {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #666666;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.row.header .cell {
+  font-family: Poppins-Regular;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 19px;
+  padding-bottom: 19px;
+}
+
+.row .cell:nth-child(1) {
+  width: 220px;
+  padding-left: 20px;
+}
+
+.row .cell:nth-child(2) {
+  width: 48px;
+}
+
+.row .cell:nth-child(3) {
+  width: 90px;
+}
+
+.row .cell:nth-child(4) {
+  width: 90px;
+}
+
+.row .cell:nth-child(5) {
+  width: 90px;
+}
+
+.row .cell:nth-child(6) {
+  width: 90px;
+}
+.row .cell:nth-child(7) {
+  width: 90px;
+}
+.row .cell:nth-child(8) {
+  width: 90px;
+}
+.row .cell:nth-child(9) {
+  width: 90px;
+}
+.row .cell:nth-child(10) {
+  width: 90px;
+}
+.row .cell:nth-child(11) {
+  width: 90px;
+}
+.row .cell:nth-child(12) {
+  width: 90px;
+}
+.row .cell:nth-child(13) {
+  width: 90px;
+}
+.row .cell:nth-child(14) {
+  width: 90px;
+}
+
+
+.table, .row {
+  width: 100% !important;
+}
+
+.row:hover {
+  background-color: #ececff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .row {
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 18px;
+    padding-top: 30px;
+    padding-right: 15px;
+    margin: 0;
+  }
+  
+  .row .cell {
+    border: none;
+    padding-left: 30px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .row .cell:nth-child(1) {
+    padding-left: 30px;
+  }
+  
+  .row .cell {
+    font-family: Poppins-Regular;
+    font-size: 18px;
+    color: #555555;
+    line-height: 1.2;
+    font-weight: unset !important;
+  }
+
+  .table, .row, .cell {
+    width: 100% !important;
+  }
+}
+	</style>
+	
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-table20" >
+			<div class="wrap-table20" >
+					<div class="table" id="INtable">
+						<div class="row header">
+							<div class="cell">
+								Первоначальные вложения
+							</div>
+							<div class="cell">
+								<a href="https://fintex.kz/fin-model-instruction/#postrashody" target="_blank">
+									<button>
+										<i class="material-icons" style="color:white;">info</i>
+									</button>
+                                </a>
+                                <br>
+									<button id="add_in" onclick="add_in()">
+										<i class="material-icons" style="color:white;">control_point</i>
+									</button>
+								<br>
+								<button id="download" onclick=" download_table_as_csv('invests')">
+									<span class="material-icons" style="color: white;">
+										cloud_download
+									</span>
+								</button>
+							</div>
+							<div class="cell">
+								Сумма
+							</div>
+							<div class="cell">
+								Срок амортизации в мес.
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								<input id="namein0" placeholder="Капитальные вложения" onchange="amortizacia()">
+							</div>
+							<div class="cell">
+								<a href="https://fintex.kz/fin-model-instruction/#postrashody" target="_blank">
+									<button>
+										<i class="material-icons">info</i>
+									</button>
+                                </a>
+							</div>
+							<div class="cell">
+								<input type="number" id="summin0" placeholder="-" onchange="amortizacia()">
+							</div>
+							<div class="cell">
+								<input type="number" id="periodin0" value="12" onchange="amortizacia()">
+							</div>
+						</div>
+
+                        <div id="tempin1">
+                        </div>
+                        <div id="tempin2">
+                        </div>
+                        <div id="tempin3">
+                        </div>
+                        <div id="tempin4">
+                        </div>
+                        <div id="tempin5">
+                        </div>
+                        <div id="tempin6">
+                        </div>
+                        <div id="tempin7">
+                        </div>
+                        <div id="tempin8">
+                        </div>
+                        <div id="tempin9">
+                        </div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="limiter">
+		<div class="container-table100" >
+			<div class="wrap-table100" >
+					<div class="table" id="Ttable">
+						<div class="row header">
+							<div class="cell">
+								Месяцы
+							</div>
+							<div class="cell">
+								
+							</div>
+							<div class="cell">
+								1
+							</div>
+							<div class="cell">
+								2
+							</div>
+							<div class="cell">
+								3
+							</div>
+							<div class="cell">
+								4
+							</div>
+							<div class="cell">
+								5
+							</div>
+							<div class="cell">
+								6
+							</div>
+							<div class="cell">
+								7
+							</div>
+							<div class="cell">
+								8
+							</div>
+							<div class="cell">
+								9
+							</div>
+							<div class="cell">
+								10
+							</div>
+							<div class="cell">
+								11
+							</div>
+							<div class="cell">
+								12
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" id="income0">
+								Выручка
+							</div>
+							<div class="cell">
+								<a href="https://fintex.kz/fin-model-instruction/#vyru4ka" target="_blank">
+									<button>
+										<i class="material-icons">info</i>
+									</button>
+								</a>
+							</div>
+							<div class="cell">
+								<input type="number" id="income1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="income12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Увеличение выручки в процентах
+							</div>
+							<div class="cell">
+								<a href="https://fintex.kz/fin-model-instruction/#vyru4kavprocentah" target="_blank">
+									<button>
+										<i class="material-icons">info</i>
+									</button>
+								</a>
+							</div>
+							<div class="cell">
+								<input type="number" id="rost1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rost12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" id="rashody0">
+								Переменные расходы в 
+								<select id="rashodtype" onchange="calcAllFree()">
+									<option value="1">процентах</option>
+									<option value="2">сумме</option>
+								</select>
+							</div>
+							<div class="cell">
+								<a href="https://fintex.kz/fin-model-instruction/#rashody" target="_blank">
+									<button>
+										<i class="material-icons">info</i>
+									</button>
+								</a>
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="rashody12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Маржинальный доход
+							</div>
+							<div class="cell">
+								<a href="https://fintex.kz/fin-model-instruction/#marja" target="_blank">
+									<button>
+										<i class="material-icons">info</i>
+									</button>
+								</a>
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="mdohod12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Постоянные расходы
+							</div>
+							<div class="cell">
+								<a href="https://fintex.kz/fin-model-instruction/#postrashody" target="_blank">
+									<button>
+										<i class="material-icons">info</i>
+									</button>
+                                </a>
+                                <br>
+									<button id="add_rashod" onclick="add_rashod()">
+										<i class="material-icons">control_point</i>
+									</button>
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="porashody12" placeholder="-">
+							</div>
+                        </div>
+
+                        <div id="temp0">
+                        </div>
+                        <div id="temp1">
+                        </div>
+                        <div id="temp2">
+                        </div>
+                        <div id="temp3">
+                        </div>
+                        <div id="temp4">
+                        </div>
+                        <div id="temp5">
+                        </div>
+                        <div id="temp6">
+                        </div>
+                        <div id="temp7">
+                        </div>
+                        <div id="temp8">
+                        </div>
+                        <div id="temp9">
+                        </div>
+                        
+						<div class="row header" id="EBITKA2">
+							<div class="cell">
+								EBITDA
+							</div>
+							<div class="cell">
+								<button id="download" onclick=" download_table_as_csv('results')">
+									<span class="material-icons" style="color: white;">
+										cloud_download
+									</span>
+								</button>
+							</div>
+							<div class="cell" id="ebitda1">
+								-
+							</div>
+							<div class="cell" id="ebitda2">
+								-
+							</div>
+							<div class="cell" id="ebitda3">
+								-
+							</div>
+							<div class="cell" id="ebitda4">
+								-
+							</div>
+							<div class="cell" id="ebitda5">
+								-
+							</div>
+							<div class="cell" id="ebitda6">
+								-
+							</div>
+							<div class="cell" id="ebitda7">
+								-
+							</div>
+							<div class="cell" id="ebitda8">
+								-
+							</div>
+							<div class="cell" id="ebitda9">
+								-
+							</div>
+							<div class="cell" id="ebitda10">
+								-
+							</div>
+							<div class="cell" id="ebitda11">
+								-
+							</div>
+							<div class="cell" id="ebitda12">
+								-
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Расходы по займам
+							</div>
+							<div class="cell">
+								
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim1" placeholder="-" onchange="zaimy()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim2" placeholder="-" onchange="nalog()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim3" placeholder="-" onchange="nalog()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim4" placeholder="-" onchange="nalog()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim5" placeholder="-" onchange="nalog()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim6" placeholder="-" onchange="nalog()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim7" placeholder="-" onchange="nalog()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim8" placeholder="-" onchange="nalog()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim9" placeholder="-" onchange="nalog()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim10" placeholder="-" onchange="nalog()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim11" placeholder="-" onchange="nalog()">
+							</div>
+							<div class="cell">
+								<input type="number" id="zaim12" placeholder="-" onchange="nalog()">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Налог <input class="intext" type="number" id="onalog0" value="3" onchange="nalog()"> % от 
+									<select id="nalogtype" onchange="nalog()">
+										<option value="cashin">дохода</option>
+										<option value="profit">прибыли</option>
+									</select>
+							</div>
+							<div class="cell">
+								
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="onalog12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Амортизация
+							</div>
+							<div class="cell">
+								
+							</div>
+							<div class="cell">
+								<input type="number" id="amor1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="amor12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row header">
+							<div class="cell">
+								Прибыль
+							</div>
+							<div class="cell">
+								
+							</div>
+							<div class="cell" id="profit1">
+								-
+							</div>
+							<div class="cell" id="profit2">
+								-
+							</div>
+							<div class="cell" id="profit3">
+								-
+							</div>
+							<div class="cell" id="profit4">
+								-
+							</div>
+							<div class="cell" id="profit5">
+								-
+							</div>
+							<div class="cell" id="profit6">
+								-
+							</div>
+							<div class="cell" id="profit7">
+								-
+							</div>
+							<div class="cell" id="profit8">
+								-
+							</div>
+							<div class="cell" id="profit9">
+								-
+							</div>
+							<div class="cell" id="profit10">
+								-
+							</div>
+							<div class="cell" id="profit11">
+								-
+							</div>
+							<div class="cell" id="profit12">
+								-
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Приход
+							</div>
+							<div class="cell">
+								
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="prihod12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell">
+								Выбытие
+							</div>
+							<div class="cell">
+								
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie1" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie2" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie3" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie4" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie5" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie6" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie7" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie8" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie9" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie10" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie11" placeholder="-">
+							</div>
+							<div class="cell">
+								<input type="number" id="vybytie12" placeholder="-">
+							</div>
+						</div>
+
+						<div class="row header">
+							<div class="cell">
+								Итог
+							</div>
+							<div class="cell">
+								
+							</div>
+							<div class="cell" id="itog1">
+								-
+							</div>
+							<div class="cell" id="itog2">
+								-
+							</div>
+							<div class="cell" id="itog3">
+								-
+							</div>
+							<div class="cell" id="itog4">
+								-
+							</div>
+							<div class="cell" id="itog5">
+								-
+							</div>
+							<div class="cell" id="itog6">
+								-
+							</div>
+							<div class="cell" id="itog7">
+								-
+							</div>
+							<div class="cell" id="itog8">
+								-
+							</div>
+							<div class="cell" id="itog9">
+								-
+							</div>
+							<div class="cell" id="itog10">
+								-
+							</div>
+							<div class="cell" id="itog11">
+								-
+							</div>
+							<div class="cell" id="itog12">
+								-
+							</div>
+						</div>
+
+						<div class="row header">
+							<div class="cell">
+								Накопленный остаток
+							</div>
+							<div class="cell">
+								<button id="download" onclick=" download_table_as_csv('results')">
+									<span class="material-icons" style="color: white;">
+										cloud_download
+									</span>
+								</button>
+							</div>
+							<div class="cell" id="ostatok1">
+								-
+							</div>
+							<div class="cell" id="ostatok2">
+								-
+							</div>
+							<div class="cell" id="ostatok3">
+								-
+							</div>
+							<div class="cell" id="ostatok4">
+								-
+							</div>
+							<div class="cell" id="ostatok5">
+								-
+							</div>
+							<div class="cell" id="ostatok6">
+								-
+							</div>
+							<div class="cell" id="ostatok7">
+								-
+							</div>
+							<div class="cell" id="ostatok8">
+								-
+							</div>
+							<div class="cell" id="ostatok9">
+								-
+							</div>
+							<div class="cell" id="ostatok10">
+								-
+							</div>
+							<div class="cell" id="ostatok11">
+								-
+							</div>
+							<div class="cell" id="ostatok12">
+								-
+							</div>
+						</div>
+
+					</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="limiter">
+		<div class="container-table20" >
+			<div class="wrap-table20" style="background-color: white;">
+				<table>
+					<tr>
+						<td style="width: 80%;">
+							<canvas id="canvas1"></canvas>
+						</td>
+						<td style="width: 20%;">
+							<canvas id="canvas1"></canvas>
+						</td>
+					</tr>
+					<tr>
+					</tr>	
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<table id="invests" style="width: 0;height: 0;">
+		<tbody style="display:none">
+			<tr>
+				<th>Первоначальные вложения</th>
+				<th>Сумма</th>
+				<th>Срок амортизации в мес.</th>
+			</tr>
+			<tr id="0tinv">
+				<td id="tnamein0"></td>
+				<td id="tsummin0"></td>
+				<td id="tperiodin0"></td>
+			</tr>
+			<tr id="kek">
+			</tr>
+		</tbody>
+	</table>
+
+	<table id="results" style="width: 0;height: 0;">
+		<tbody style="display:none">
+		<tr>
+            <th>Месяцы</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+		</tr>
+		<tr>
+			<td id="tincome0">Выручка</td>
+			<td id="tincome1"></td>
+			<td id="tincome2"></td>
+			<td id="tincome3"></td>
+			<td id="tincome4"></td>
+			<td id="tincome5"></td>
+			<td id="tincome6"></td>
+			<td id="tincome7"></td>
+			<td id="tincome8"></td>
+			<td id="tincome9"></td>
+			<td id="tincome10"></td>
+			<td id="tincome11"></td>
+			<td id="tincome12"></td>
+		</tr>
+		<tr>
+			<td id="trost0">Увеличение выручки в процентах</td>
+			<td id="trost1"></td>
+			<td id="trost2"></td>
+			<td id="trost3"></td>
+			<td id="trost4"></td>
+			<td id="trost5"></td>
+			<td id="trost6"></td>
+			<td id="trost7"></td>
+			<td id="trost8"></td>
+			<td id="trost9"></td>
+			<td id="trost10"></td>
+			<td id="trost11"></td>
+			<td id="trost12"></td>
+		</tr>
+		<tr>
+			<td id="trashody1"></td>
+			<td id="trashody2"></td>
+			<td id="trashody3"></td>
+			<td id="trashody4"></td>
+			<td id="trashody5"></td>
+			<td id="trashody6"></td>
+			<td id="trashody7"></td>
+			<td id="trashody8"></td>
+			<td id="trashody9"></td>
+			<td id="trashody10"></td>
+			<td id="trashody11"></td>
+			<td id="trashody12"></td>
+		</tr>
+		<tr>
+			<td id="tmdohod0">Маржинальный доход</td>
+			<td id="tmdohod1"></td>
+			<td id="tmdohod2"></td>
+			<td id="tmdohod3"></td>
+			<td id="tmdohod4"></td>
+			<td id="tmdohod5"></td>
+			<td id="tmdohod6"></td>
+			<td id="tmdohod7"></td>
+			<td id="tmdohod8"></td>
+			<td id="tmdohod9"></td>
+			<td id="tmdohod10"></td>
+			<td id="tmdohod11"></td>
+			<td id="tmdohod12"></td>
+		</tr>
+		<tr id="tposrashodyAll">
+			<td id="tporashody0">Постоянные расходы</td>
+			<td id="tporashody1"></td>
+			<td id="tporashody2"></td>
+			<td id="tporashody3"></td>
+			<td id="tporashody4"></td>
+			<td id="tporashody5"></td>
+			<td id="tporashody6"></td>
+			<td id="tporashody7"></td>
+			<td id="tporashody8"></td>
+			<td id="tporashody9"></td>
+			<td id="tporashody10"></td>
+			<td id="tporashody11"></td>
+			<td id="tporashody12"></td>
+		</tr>
+		<tr id="ebitable">
+			<td id="tebitda0">EBITDA</td>
+			<td id="tebitda1"></td>
+			<td id="tebitda2"></td>
+			<td id="tebitda3"></td>
+			<td id="tebitda4"></td>
+			<td id="tebitda5"></td>
+			<td id="tebitda6"></td>
+			<td id="tebitda7"></td>
+			<td id="tebitda8"></td>
+			<td id="tebitda9"></td>
+			<td id="tebitda10"></td>
+			<td id="tebitda11"></td>
+			<td id="tebitda12"></td>
+		</tr>
+		<tr id="zaim">
+			<td id="tzaim0">Расходы по займам</td>
+			<td id="tzaim1"></td>
+			<td id="tzaim2"></td>
+			<td id="tzaim3"></td>
+			<td id="tzaim4"></td>
+			<td id="tzaim5"></td>
+			<td id="tzaim6"></td>
+			<td id="tzaim7"></td>
+			<td id="tzaim8"></td>
+			<td id="tzaim9"></td>
+			<td id="tzaim10"></td>
+			<td id="tzaim11"></td>
+			<td id="tzaim12"></td>
+		</tr>
+		<tr id="nalog">
+			<td id="tnalog0">Налог N % от TYPE</td>
+			<td id="tnalog1"></td>
+			<td id="tnalog2"></td>
+			<td id="tnalog3"></td>
+			<td id="tnalog4"></td>
+			<td id="tnalog5"></td>
+			<td id="tnalog6"></td>
+			<td id="tnalog7"></td>
+			<td id="tnalog8"></td>
+			<td id="tnalog9"></td>
+			<td id="tnalog10"></td>
+			<td id="tnalog11"></td>
+			<td id="tnalog12"></td>
+		</tr>
+		<tr id="amor">
+			<td id="tamor0">Амортизация</td>
+			<td id="tamor1"></td>
+			<td id="tamor2"></td>
+			<td id="tamor3"></td>
+			<td id="tamor4"></td>
+			<td id="tamor5"></td>
+			<td id="tamor6"></td>
+			<td id="tamor7"></td>
+			<td id="tamor8"></td>
+			<td id="tamor9"></td>
+			<td id="tamor10"></td>
+			<td id="tamor11"></td>
+			<td id="tamor12"></td>
+		</tr>
+		<tr id="pribily">
+			<td id="tpribily0">Прибыль</td>
+			<td id="tpribily1"></td>
+			<td id="tpribily2"></td>
+			<td id="tpribily3"></td>
+			<td id="tpribily4"></td>
+			<td id="tpribily5"></td>
+			<td id="tpribily6"></td>
+			<td id="tpribily7"></td>
+			<td id="tpribily8"></td>
+			<td id="tpribily9"></td>
+			<td id="tpribily10"></td>
+			<td id="tpribily11"></td>
+			<td id="tpribily12"></td>
+		</tr>
+		<tr id="prihod">
+			<td id="tprihod0">Приход</td>
+			<td id="tprihod1"></td>
+			<td id="tprihod2"></td>
+			<td id="tprihod3"></td>
+			<td id="tprihod4"></td>
+			<td id="tprihod5"></td>
+			<td id="tprihod6"></td>
+			<td id="tprihod7"></td>
+			<td id="tprihod8"></td>
+			<td id="tprihod9"></td>
+			<td id="tprihod10"></td>
+			<td id="tprihod11"></td>
+			<td id="tprihod12"></td>
+		</tr>
+		<tr id="vibytieka">
+			<td id="tvibytieka0">Выбытие</td>
+			<td id="tvibytieka1"></td>
+			<td id="tvibytieka2"></td>
+			<td id="tvibytieka3"></td>
+			<td id="tvibytieka4"></td>
+			<td id="tvibytieka5"></td>
+			<td id="tvibytieka6"></td>
+			<td id="tvibytieka7"></td>
+			<td id="tvibytieka8"></td>
+			<td id="tvibytieka9"></td>
+			<td id="tvibytieka10"></td>
+			<td id="tvibytieka11"></td>
+			<td id="tvibytieka12"></td>
+		</tr>
+		<tr id="itog">
+			<td id="titog0">Итог</td>
+			<td id="titog1"></td>
+			<td id="titog2"></td>
+			<td id="titog3"></td>
+			<td id="titog4"></td>
+			<td id="titog5"></td>
+			<td id="titog6"></td>
+			<td id="titog7"></td>
+			<td id="titog8"></td>
+			<td id="titog9"></td>
+			<td id="titog10"></td>
+			<td id="titog11"></td>
+			<td id="titog12"></td>
+		</tr>
+		<tr id="ostatok">
+			<td id="tostatok0">Остаток</td>
+			<td id="tostatok1"></td>
+			<td id="tostatok2"></td>
+			<td id="tostatok3"></td>
+			<td id="tostatok4"></td>
+			<td id="tostatok5"></td>
+			<td id="tostatok6"></td>
+			<td id="tostatok7"></td>
+			<td id="tostatok8"></td>
+			<td id="tostatok9"></td>
+			<td id="tostatok10"></td>
+			<td id="tostatok11"></td>
+			<td id="tostatok12"></td>
+		</tr>
+	</tbody>
+	</table>
+
+	<script language="javascript">
+		"use strict";
+
+        var new_rashods = 0;
+		var new_in = 1;
+
+		document.getElementById('income1').addEventListener( 'change', calculateIncomeBut );
+		document.getElementById('rost1').addEventListener( 'change', calculateRostBut );
+		// document.getElementById('prashody1').addEventListener( 'change', prashodyBut );
+		document.getElementById('rashody1').addEventListener( 'change', rashodyBut );
+		document.getElementById('porashody1').addEventListener( 'change', porashodyBut );
+
+		for(let m = 2; m<=12; m++){
+			document.getElementById('income' + m.toString()).addEventListener( 'change', calculateIncome );
+			document.getElementById('rost' + m.toString()).addEventListener( 'change', calculateRost );
+			// document.getElementById('prashody' + m.toString()).addEventListener( 'change', calcAllFree );
+			document.getElementById('rashody' + m.toString()).addEventListener( 'change', calcAllFree );
+			document.getElementById('porashody' + m.toString()).addEventListener( 'change', calcAllFree );
+		}
+
+		document.getElementById('income0').addEventListener( 'click', calculateIncomeBut );
+		// document.getElementById('download').addEventListener( 'click', download_table_as_csv("results") );
+
+		function calculateIncome(){
+			
+			var income1 = document.getElementById("income1").value;
+			document.getElementById("tincome1").innerHTML = income1;
+			var rosts = [];
+
+			for( let i = 0; i<= 11; i++){
+				if(document.getElementById("rost" + (i+1).toString()).value){
+					rosts[i] = parseFloatZero(document.getElementById("rost" + (i+1).toString()).value);
+				}
+				else{
+					rosts[i] = 0;
+				}
+			}
+			iterateRost(0, rosts, iterateRost);
+		}
+
+		function iterateRost(i, rosts, callback){
+			if(i <= 10){
+				let old = document.getElementById("income" + (i+1).toString()).value;
+				let pred = parseFloatZero(old);
+				pred = pred;
+				let n = rosts[i]*pred/100;
+				n = n;
+				let sum = pred + n;
+				sum = sum;
+				let el = document.getElementById("income" + (i+2).toString()).value;
+				if(el == ""){
+					document.getElementById("income" + (i+2).toString()).value = sum.toFixed(2).toString();
+					document.getElementById("tincome" + (i+2).toString()).innerHTML = sum.toFixed(2).toString();
+				}
+				calcAllFree();
+				callback(i+1, rosts, iterateRost);
+			}
+		}
+
+		function calculateIncomeBut(){
+			
+			var income1 = document.getElementById("income1").value;
+			document.getElementById("tincome1").innerHTML = income1;
+			var rosts = [];
+
+			for( let i = 0; i<= 11; i++){
+				if(document.getElementById("rost" + (i+1).toString()).value){
+					rosts[i] = parseFloatZero(document.getElementById("rost" + (i+1).toString()).value);
+				}
+				else{
+					rosts[i] = 0;
+				}
+			}
+			iterateRostBut(0, rosts, iterateRostBut);
+		}
+
+		function iterateRostBut(i, rosts, callback){
+			if(i <= 10){
+				let old = document.getElementById("income" + (i+1).toString()).value;
+				let pred = parseFloatZero(old);
+				pred = pred;
+				let n = rosts[i]*pred/100;
+				n = n;
+				let sum = pred + n;
+				sum = sum;
+				let el = document.getElementById("income" + (i+2).toString()).value;
+				document.getElementById("income" + (i+2).toString()).value = sum.toFixed(2).toString();
+				document.getElementById("tincome" + (i+2).toString()).innerHTML = sum.toFixed(2).toString();
+				calcAllFree();
+				callback(i+1, rosts, iterateRostBut);
+			}
+		}
+
+		function calculateRost(){
+			var rost1 = document.getElementById("rost1").value
+			document.getElementById("trost1").innerHTML = rost1;
+			for( let i = 1; i<= 11; i++){
+				if(document.getElementById("rost" + (i+1).toString()).value == ''){
+					document.getElementById("rost" + (i+1).toString()).value = rost1;
+					document.getElementById("trost" + (i+1).toString()).innerHTML = rost1;
+				}
+			}
+			document.getElementById('income0').click();
+		}
+
+		function calculateRostBut(){
+			var rost1 = document.getElementById("rost1").value
+			document.getElementById("trost1").innerHTML = rost1;
+			for( let i = 1; i<= 11; i++){
+				document.getElementById("rost" + (i+1).toString()).value = rost1;
+				document.getElementById("trost" + (i+1).toString()).innerHTML = rost1;
+			}
+			document.getElementById('income0').click();
+		}
+
+		function rashodyBut(){
+			var rashod1 = document.getElementById("rashody1").value;
+			document.getElementById("trashody1").innerHTML = rashod1;
+			// console.log("SHIT!");
+			for( let i = 1; i<= 12; i++){
+				document.getElementById("rashody" + (i).toString()).value = rashod1;
+				document.getElementById("trashody" + (i).toString()).innerHTML = rashod1;
+			}
+			calcAllFree();
+		}
+
+		function porashodyBut(){
+			var porashod1 = document.getElementById("porashody1").value;
+			document.getElementById("tporashody1").innerHTML = porashod1;
+			// console.log("SHIT!");
+			for( let i = 1; i<= 12; i++){
+				document.getElementById("porashody" + (i).toString()).value = porashod1;
+				document.getElementById("tporashody" + (i).toString()).innerHTML = porashod1;
+			}
+			calcAllFree();
+		}
+
+		function calcAllFree(){
+
+			for( let i = 1; i<= 12; i++){
+
+				let income = document.getElementById("income" + (i).toString()).value;
+				document.getElementById("tincome" + (i).toString()).innerHTML = income;
+				document.getElementById("trost" + (i).toString()).innerHTML = document.getElementById("rost" + (i).toString()).value;
+
+				let rashod = document.getElementById("rashody" + (i).toString()).value;
+				if(rashod == ''){
+					rashod = 0;
+				}
+				else{
+					rashod = parseFloatZero(rashod);
+					
+				}
+				document.getElementById("trashody" + (i).toString()).innerHTML = rashod;
+			
+				let porashod = document.getElementById("porashody" + (i).toString()).value;
+				if(porashod == ''){
+					porashod = 0;
+				}
+				else{
+					porashod = parseFloatZero(porashod);
+				}
+				document.getElementById("tporashody" + (i).toString()).innerHTML = porashod;
+
+				let marja = 0;
+
+				if (document.getElementById("rashodtype").value == "2"){
+					marja = income - rashod;
+					document.getElementById("trashody0").innerHTML = "Переменные расходы";
+				} else{
+					marja = income - income*rashod/100;
+					document.getElementById("trashody0").innerHTML = "Переменные расходы в процентах";
+				}
+				
+
+				document.getElementById("mdohod" + (i).toString()).value = marja.toFixed(2).toString();
+				document.getElementById("tmdohod" + (i).toString()).innerHTML = marja.toFixed(2).toString();
+				
+
+				let ebitda = marja - porashod;
+
+				// console.log(ebitda);
+
+				document.getElementById("ebitda" + (i).toString()).innerText = ebitda.toFixed(2).toString();
+				document.getElementById("tebitda" + (i).toString()).innerText = ebitda.toFixed(2).toString();
+
+			}
+
+			calcall();
+
+		}
+
+        String.prototype.replaceAll = function(search, replace){
+            return this.split(search).join(replace);
+        }
+
+		function download_table_as_csv(table_id) {
+			// Select rows from table_id
+			var rows = document.querySelectorAll('table#' + table_id + ' tr');
+			// Construct csv
+			var csv = [];
+			for (var i = 0; i < rows.length; i++) {
+				var row = [], cols = rows[i].querySelectorAll('td, th');
+				for (var j = 0; j < cols.length; j++) {
+					// Clean innertext to remove multiple spaces and jumpline (break csv)
+					var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+					// Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
+					data = data.replace(/"/g, '""');
+					// Push escaped string
+					row.push('"' + data + '"');
+				}
+				csv.push(row.join(','));
+			}
+			var csv_string = csv.join('\n');
+			// Download it
+			var filename = 'Fintex.csv';
+			var link = document.createElement('a');
+			link.style.display = 'none';
+			link.setAttribute('target', '_blank');
+			link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv_string));
+			link.setAttribute('download', filename);
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		}
+
+        function add_rashod() {
+            var new_r = `
+							<div class="cell" style="padding-left: 100px; background:#fbf2ff;">
+								Статья: <br> <input type="text" id="NNpodname" placeholder="Название" onchange="change_name_poras('NN')">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<a href="https://fintex.kz/fin-model-instruction/#postrashody" target="_blank">
+									<button>
+										<i class="material-icons">info</i>
+									</button>
+                                </a>
+                                <br>
+									<button id="add_rashod" onclick="remove_rashod('NN')">
+										<i class="material-icons">remove_circle_outline</i>
+									</button>
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody1" value="0" onchange="populate_poras('NN')">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody2" value="0">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody3" value="0">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody4" value="0">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody5" value="0">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody6" value="0">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody7" value="0">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody8" value="0">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody9" value="0">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody10" value="0">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody11" value="0">
+							</div>
+							<div class="cell" style="background:#fbf2ff;">
+								<input type="number" id="NNporashody12" value="0">
+							</div>
+            `;
+
+            var el = document.getElementById("temp" + new_rashods.toString());
+            el.className = "row";
+            el.innerHTML = new_r.replaceAll("NN", new_rashods.toString());
+            
+
+            var parent = document.getElementById("results");
+            var elem = document.createElement('tr');
+            elem.id = new_rashods.toString() + "tr";
+            var ths = `
+                <td id="NNtporashody0"></td>
+                <td id="NNtporashody1"></td>
+                <td id="NNtporashody2"></td>
+                <td id="NNtporashody3"></td>
+                <td id="NNtporashody4"></td>
+                <td id="NNtporashody5"></td>
+                <td id="NNtporashody6"></td>
+                <td id="NNtporashody7"></td>
+                <td id="NNtporashody8"></td>
+                <td id="NNtporashody9"></td>
+                <td id="NNtporashody10"></td>
+                <td id="NNtporashody11"></td>
+                <td id="NNtporashody12"></td>
+            `;
+            var container = document.getElementById("ebitable");
+            parent = container.parentElement;
+            elem.innerHTML = ths.replaceAll("NN", new_rashods.toString());
+            parent.insertBefore(elem, container);
+
+            new_rashods = new_rashods + 1;
+            sum_poras();
+        }
+
+        function remove_rashod(NN) {
+            document.getElementById("temp" + NN).remove();
+            document.getElementById(NN + "tr").remove();
+            sum_poras();
+        }
+        
+        function change_name_poras(NN) {
+            document.getElementById(NN + "tporashody0").innerHTML = "Статья: " + document.getElementById(NN + "podname").value;
+        }
+
+        function populate_poras(NN){
+            var giga = parseFloatZero(document.getElementById(NN + "porashody1").value);
+            for( let i = 1; i<= 12; i++){
+                document.getElementById(NN + "porashody" + i.toString()).value = giga;
+                document.getElementById(NN + "tporashody" + i.toString()).innerHTML = giga;
+            }
+            sum_poras();
+        }
+
+        function sum_poras() {
+            
+            for( let i = 1; i<= 12; i++){
+                var sums = 0;
+                for(let m = 0; m<=new_rashods; m++){
+                    try{
+                        sums = sums + parseFloatZero(document.getElementById(m.toString() + "porashody" + i.toString()).value);
+                    }
+                    catch{
+                        sums = sums;
+                    }
+                }
+				document.getElementById("porashody" + (i).toString()).value = sums;
+				document.getElementById("tporashody" + (i).toString()).innerHTML = sums;
+			}
+            calcAllFree();
+        }
+
+
+		function add_in() {
+            var new_r = `
+						<div class="cell">
+								<input id="nameinNN" placeholder="Капитальные вложения" onchange="amortizacia()">
+							</div>
+							<div class="cell">
+								<a href="https://fintex.kz/fin-model-instruction/#postrashody" target="_blank">
+									<button>
+										<i class="material-icons">info</i>
+									</button>
+                                </a>
+                                <br>
+									<button onclick="remove_in('NN')">
+										<i class="material-icons">remove_circle_outline</i>
+									</button>
+							</div>
+							<div class="cell">
+								<input type="number" id="summinNN" placeholder="-" onchange="amortizacia()">
+							</div>
+							<div class="cell">
+								<input type="number" id="periodinNN" value="12" onchange="amortizacia()">
+							</div>
+            `;
+
+            var el = document.getElementById("tempin" + new_in.toString());
+            el.className = "row";
+            el.innerHTML = new_r.replaceAll("NN", new_in.toString());
+            amortizacia();
+
+			var elem = document.createElement('tr');
+            elem.id = new_in.toString() + "tinv";
+            var ths = `
+				<td id="tnameinNN"></td>
+				<td id="tsumminNN"></td>
+				<td id="tperiodinNN"></td>
+            `;
+            var container = document.getElementById("kek");
+            parent = container.parentElement;
+            elem.innerHTML = ths.replaceAll("NN", new_in.toString());
+            parent.insertBefore(elem, container);
+
+            new_in = new_in + 1;
+        }
+
+		function remove_in(NN) {
+            document.getElementById("tempin" + NN).remove();
+			amortizacia();
+        }
+
+		function amortizacia(){
+			let all = 0;
+			let ans = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+			for( let k = 0; k<new_in; k++){
+				try{
+					let months = parseFloatZero(document.getElementById("periodin" + k.toString()).value);
+					let summm = parseFloatZero(document.getElementById("summin" + k.toString()).value);
+					let val = summm/months;
+
+					let namy = document.getElementById("namein"+k.toString()).value;
+					console.log(namy);
+
+					document.getElementById("tnamein"+k.toString()).innerHTML = namy;
+					document.getElementById("tsummin"+k.toString()).innerHTML = summm;
+					document.getElementById("tperiodin"+k.toString()).innerHTML = months;
+					
+					let max = 0;
+					if (months>12){
+						max = 12;
+					}
+					else{
+						max = months;
+					}
+					for (let bb = 0; bb<max; bb ++){
+						ans[bb] = ans[bb] + val;
+					}
+				}
+				catch{
+					let a = 0;
+				}
+			}
+
+			for (let gg = 1; gg<=12; gg++){
+				document.getElementById("amor"+gg.toString()).value = ans[gg-1].toFixed(2);
+				document.getElementById("tamor"+gg.toString()).innerHTML = ans[gg-1].toFixed(2);
+			}
+			calcall();
+		}
+
+		function zaimy(){
+			let zaim = parseFloatZero(document.getElementById("zaim1").value).toFixed(2);
+			document.getElementById("tzaim1").innerHTML = zaim;
+			for (let k=2; k<13; k++){
+				document.getElementById("zaim" + k.toString()).value = zaim;
+				document.getElementById("tzaim" + k.toString()).innerHTML = zaim;
+			}
+			nalog();
+		}
+
+		function nalog(){
+			let status = document.getElementById("nalogtype").value;
+			let perc = parseFloatZero(document.getElementById("onalog0").value);
+			for (let i = 1; i<13; i++){
+				if (status == "cashin"){
+					document.getElementById("tnalog0").innerHTML = "Налог " + perc.toString() + " от дохода";
+
+					let sum = parseFloatZero(document.getElementById("income" + i.toString()).value);
+					let nal = sum*perc/100;
+					nal = nal.toFixed(2);
+					document.getElementById("onalog" + i.toString()).value = nal;
+					document.getElementById("tnalog"+i.toString()).innerHTML = nal;
+				}
+				else{
+					document.getElementById("tnalog0").innerHTML = "Налог " + perc.toString() + " от прибыли";
+					let sum = parseFloatZero(document.getElementById("ebitda" + i.toString()).innerHTML) - parseFloatZero(document.getElementById("zaim" + i.toString()).value);
+					console.log("Nalog is: " + sum);
+					let nal = sum*perc/100;
+					nal = nal.toFixed(2);
+					document.getElementById("onalog" + i.toString()).value = nal;
+					document.getElementById("tnalog"+i.toString()).innerHTML = nal;
+				}
+				
+			}
+		}
+
+		function calcprofit(){
+			for (let i = 1; i<13; i++){
+				let ebitda = parseFloatZero(document.getElementById("ebitda" + i.toString()).innerHTML);
+				let zaim = parseFloatZero(document.getElementById("zaim" + i.toString()).value);
+				let nalog = parseFloatZero(document.getElementById("onalog" + i.toString()).value);
+				let amort = parseFloatZero(document.getElementById("amor" + i.toString()).value);
+
+				let profit = ebitda - zaim - nalog - amort;
+				document.getElementById("profit"+i.toString()).innerHTML = profit.toFixed(2);
+				document.getElementById("tpribily"+i.toString()).innerHTML = profit;
+				
+				let prihod = parseFloatZero(document.getElementById("income" + i.toString()).value);
+				document.getElementById("prihod" + i.toString()).value = prihod.toFixed(2);
+				document.getElementById("tprihod" + i.toString()).innerHTML = prihod;
+
+				let sum_per = summa_perv();
+
+				let posto = parseFloatZero(document.getElementById("porashody" + i.toString()).value);
+				let perem = parseFloatZero(document.getElementById("rashody" + i.toString()).value);
+
+				if (i == 1){
+					let ubytok = sum_per + posto + perem + zaim + nalog;
+					document.getElementById("vybytie" + i.toString()).value = ubytok.toFixed(2);
+					document.getElementById("tvibytieka" + i.toString()).innerHTML = ubytok;
+
+					let itog = document.getElementById("itog"+ i.toString());
+					let titog = document.getElementById("titog"+ i.toString());
+					itog.innerHTML = (prihod - ubytok).toFixed(2);
+					titog.innerHTML = prihod - ubytok;
+					if(prihod - ubytok < 0){itog.style.color = "red";}
+
+					let ostatok = document.getElementById("ostatok"+ i.toString());
+					ostatok.innerHTML = (prihod - ubytok).toFixed(2);
+					let tostatok = document.getElementById("tostatok"+ i.toString());
+					tostatok.innerHTML = prihod - ubytok;
+					if((prihod - ubytok) < 0){ostatok.style.color = "red";}
+				}
+				else {
+					let ubytok = posto + perem + zaim + nalog;
+					document.getElementById("vybytie" + i.toString()).value = ubytok.toFixed(2);
+					document.getElementById("tvibytieka" + i.toString()).innerHTML = ubytok;
+
+					let itog = document.getElementById("itog"+ i.toString());
+					let itog_old = parseFloatZero(document.getElementById("ostatok"+ (i-1).toString()).innerHTML);
+					let titog = document.getElementById("titog"+ i.toString());
+					itog.innerHTML = (prihod - ubytok).toFixed(2);
+					titog.innerHTML = prihod - ubytok;
+					if(prihod - ubytok < 0){itog.style.color = "red";}
+
+					let ostatok = document.getElementById("ostatok"+ i.toString());
+					ostatok.innerHTML = (itog_old + prihod - ubytok).toFixed(2);
+					let tostatok = document.getElementById("tostatok"+ i.toString());
+					tostatok.innerHTML = itog_old + prihod - ubytok;
+					if(((itog_old + prihod) - ubytok) < 0){ostatok.style.color = "red";}
+				}
+
+			}
+		}
+
+		function summa_perv(){
+			let sum = 0;
+			for( let k = 0; k<new_in; k++){
+				try{sum = sum + parseFloatZero(document.getElementById("summin" + k.toString()).value);}
+				catch{let a=5;}
+			}
+			return sum;
+		}
+
+		function calcall(){
+			nalog();
+			calcprofit();
+		}
+
+		function parseFloatZero(st){
+			let gg = parseFloat(st);
+			if (gg){
+				return gg;
+			}
+			else{
+				return 0;
+			}
+		}
+		
+
+		var barChartData = {
+			labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+			datasets: [{
+				label: '',
+				backgroundColor: window.chartColors.red,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			}, {
+				label: 'Dataset 2',
+				backgroundColor: window.chartColors.blue,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			}, {
+				label: 'Dataset 3',
+				backgroundColor: window.chartColors.green,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			}]
+
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas1').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					title: {
+						display: true,
+						text: 'Chart.js Bar Chart - Stacked'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false
+					},
+					responsive: true,
+					scales: {
+						xAxes: [{
+							stacked: true,
+						}],
+						yAxes: [{
+							stacked: true
+						}]
+					}
+				}
+			});
+		};
+
+		document.getElementById('randomizeData').addEventListener('click', function() {
+			barChartData.datasets.forEach(function(dataset) {
+				dataset.data = dataset.data.map(function() {
+					return randomScalingFactor();
+				});
+			});
+			window.myBar.update();
+		});
+
+	</script>
+</body>
+</html>
