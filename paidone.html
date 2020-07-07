@@ -152,7 +152,7 @@ iframe {
 }
 
 .container-table20 {
-  width: 1000px;
+  width: 60vw;
   /* min-height: 100vh; */
   background: #eec7ff;
 
@@ -168,7 +168,29 @@ iframe {
 }
 
 .wrap-table20 {
-  width: 1000px;
+  width: 60vw;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.container-table40 {
+  width: 100vw;
+  /* min-height: 100vh; */
+  background: #eec7ff;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 33px 30px;
+}
+
+.wrap-table40 {
+  width: 100vw;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -1176,20 +1198,37 @@ iframe {
 	</div>
 
 	<div class="limiter">
-		<div class="container-table20" >
-			<div class="wrap-table20" style="background-color: white;">
-				<table>
-					<tr>
-						<td style="width: 80%;">
-							<canvas id="canvas1"></canvas>
-						</td>
-						<td style="width: 20%;">
-							<canvas id="canvas1"></canvas>
-						</td>
-					</tr>
-					<tr>
-					</tr>	
-				</table>
+		<div class="container-table40" >
+			<div class="wrap-table40" style="background-color: white; text-align: center;">
+				<br>
+				<a id="download11" download="image.png">
+					<button onclick="download1()">
+						<span class="material-icons" style="color: black;">
+							cloud_download
+						</span>
+					</button>
+				</a>
+				<br>
+				<canvas id="canvas1" style="background-color: white;"></canvas>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="limiter">
+		<div class="container-table40" >
+			<div class="wrap-table40" style="background-color: white; text-align: center;">
+				<br>
+				<a id="download2" download="image.png">
+					<button onclick="download2()">
+						<span class="material-icons" style="color: black;">
+							cloud_download
+						</span>
+					</button>
+				</a>
+				<br>
+				<canvas id="canvas2" style="background-color: white;"></canvas>
+				
 			</div>
 		</div>
 	</div>
@@ -1259,6 +1298,7 @@ iframe {
 			<td id="trost12"></td>
 		</tr>
 		<tr>
+			<td id="trashody0"></td>
 			<td id="trashody1"></td>
 			<td id="trashody2"></td>
 			<td id="trashody3"></td>
@@ -1669,7 +1709,7 @@ iframe {
         function add_rashod() {
             var new_r = `
 							<div class="cell" style="padding-left: 100px; background:#fbf2ff;">
-								Статья: <br> <input type="text" id="NNpodname" placeholder="Название" onchange="change_name_poras('NN')">
+								Статья: <br> <input type="text" id="NNpodname" placeholder="Название NN" onchange="change_name_poras('NN')">
 							</div>
 							<div class="cell" style="background:#fbf2ff;">
 								<a href="https://fintex.kz/fin-model-instruction/#postrashody" target="_blank">
@@ -1876,6 +1916,7 @@ iframe {
 				document.getElementById("tamor"+gg.toString()).innerHTML = ans[gg-1].toFixed(2);
 			}
 			calcall();
+			update_chart();
 		}
 
 		function zaimy(){
@@ -1885,7 +1926,7 @@ iframe {
 				document.getElementById("zaim" + k.toString()).value = zaim;
 				document.getElementById("tzaim" + k.toString()).innerHTML = zaim;
 			}
-			nalog();
+			calcall();
 		}
 
 		function nalog(){
@@ -1912,6 +1953,44 @@ iframe {
 				}
 				
 			}
+			update_chart();
+		}
+
+
+		var EBITDA = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		var NALOG = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		var ZAIM = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		var PRIBYL = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		var RASHODY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		var PRASHODY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		var DOHOD = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		var VSERASHODY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		var VIBYL = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		var OSTATOK = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+		function update_chart(){
+			for (let i = 1; i<13; i++){
+				EBITDA[i-1] = parseFloatZero(document.getElementById("ebitda" + i.toString()).innerHTML);
+				NALOG[i-1] = parseFloatZero(document.getElementById("onalog" + i.toString()).value);
+				ZAIM[i-1] = parseFloatZero(document.getElementById("zaim" + i.toString()).value);
+				PRIBYL[i-1] = parseFloatZero(document.getElementById("profit"+i.toString()).innerHTML);
+				PRASHODY[i-1] = parseFloatZero(document.getElementById("porashody" + i.toString()).value);
+				DOHOD[i-1] = parseFloatZero(document.getElementById("prihod" + i.toString()).value);
+				VIBYL[i-1] = -1*parseFloatZero(document.getElementById("vybytie"+i.toString()).value);
+				OSTATOK[i-1] = parseFloatZero(document.getElementById("ostatok"+i.toString()).innerHTML);
+
+				let rashodtype = document.getElementById("rashodtype").value;
+				if (rashodtype == "1"){
+					RASHODY[i-1] = ((parseFloatZero(document.getElementById("rashody" + i.toString()).value)*DOHOD[i-1])/100).toFixed(2);
+				}
+				else{
+					RASHODY[i-1] = parseFloatZero(document.getElementById("rashody" + i.toString()).value);
+				}
+				VSERASHODY[i-1] = RASHODY[i-1] + PRASHODY[i-1];
+				
+			}
+			window.myBar.update();
+			window.myLine.update();
 		}
 
 		function calcprofit(){
@@ -1943,13 +2022,13 @@ iframe {
 					let titog = document.getElementById("titog"+ i.toString());
 					itog.innerHTML = (prihod - ubytok).toFixed(2);
 					titog.innerHTML = prihod - ubytok;
-					if(prihod - ubytok < 0){itog.style.color = "red";}
+					if(prihod - ubytok < 0){itog.style.color = "red";}else{itog.style.color = "white";}
 
 					let ostatok = document.getElementById("ostatok"+ i.toString());
 					ostatok.innerHTML = (prihod - ubytok).toFixed(2);
 					let tostatok = document.getElementById("tostatok"+ i.toString());
 					tostatok.innerHTML = prihod - ubytok;
-					if((prihod - ubytok) < 0){ostatok.style.color = "red";}
+					if((prihod - ubytok) < 0){ostatok.style.color = "red";}else{ostatok.style.color = "white";}
 				}
 				else {
 					let ubytok = posto + perem + zaim + nalog;
@@ -1961,16 +2040,17 @@ iframe {
 					let titog = document.getElementById("titog"+ i.toString());
 					itog.innerHTML = (prihod - ubytok).toFixed(2);
 					titog.innerHTML = prihod - ubytok;
-					if(prihod - ubytok < 0){itog.style.color = "red";}
+					if(prihod - ubytok < 0){itog.style.color = "red";}else{itog.style.color = "white";}
 
 					let ostatok = document.getElementById("ostatok"+ i.toString());
 					ostatok.innerHTML = (itog_old + prihod - ubytok).toFixed(2);
 					let tostatok = document.getElementById("tostatok"+ i.toString());
 					tostatok.innerHTML = itog_old + prihod - ubytok;
-					if(((itog_old + prihod) - ubytok) < 0){ostatok.style.color = "red";}
+					if(((itog_old + prihod) - ubytok) < 0){ostatok.style.color = "red";}else{ostatok.style.color = "white";}
 				}
 
 			}
+			update_chart();
 		}
 
 		function summa_perv(){
@@ -2001,54 +2081,97 @@ iframe {
 		var barChartData = {
 			labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 			datasets: [{
-				label: '',
-				backgroundColor: window.chartColors.red,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
-			}, {
-				label: 'Dataset 2',
-				backgroundColor: window.chartColors.blue,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
-			}, {
-				label: 'Dataset 3',
-				backgroundColor: window.chartColors.green,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
-			}]
+				label: 'Прибыль',
+				backgroundColor: "#6C3483",
+				data: PRIBYL
+			}, 
+
+			{	label: 'Приход',
+				backgroundColor: "#BB8FCE",
+				data: DOHOD
+			}, 
+			{	label: 'EBITDA',
+				backgroundColor: "#3498DB",
+				data: EBITDA
+			}, 
+			{	label: 'Расходы',
+				backgroundColor: "#7B241C",
+				data: VSERASHODY
+			}, 
+			{	label: 'Переменные расходы',
+				backgroundColor: "#C0392B",
+				data: RASHODY
+			}, 
+			{	label: 'Постоянные расходы',
+				backgroundColor: "#EC7063",
+				data: PRASHODY
+			}, 
+			{	label: 'Проценты по займам',
+				backgroundColor: "#273746",
+				data: ZAIM
+			}, 
+			{	label: 'Налоги',
+				backgroundColor: "#D35400",
+				data: NALOG
+			}
+			]
 
 		};
 
+
+		var barChartData2 = {
+			labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+			datasets: [
+			{	label: 'Приход',
+				backgroundColor: "#6C3483",
+				borderColor: "#6C3483",
+				fill: false,
+				data: DOHOD,
+				yAxisID: 'y-axis-1'
+			}, 
+			{	label: 'Выбытие',
+				backgroundColor: "#7B241C",
+				borderColor: "#7B241C",
+				fill: false,
+				data: VIBYL,
+				yAxisID: 'y-axis-1'
+			},
+			{	label: 'Остаток',
+				backgroundColor: "#3498DB",
+				borderColor: "#3498DB",
+				fill: true,
+				data: OSTATOK,
+				yAxisID: 'y-axis-1'
+			}
+			]
+		};
+
+
+		function download1(){
+			var download = document.getElementById("download11");
+			var image = document.getElementById("canvas1").toDataURL("image/png")
+						.replace("image/png", "image/octet-stream");
+			download.setAttribute("href", image);
+		}
+
+		function download2(){
+			var download = document.getElementById("download2");
+			var image = document.getElementById("canvas2").toDataURL("image/png")
+						.replace("image/png", "image/octet-stream");
+			download.setAttribute("href", image);
+		}
+
 		window.onload = function() {
-			var ctx = document.getElementById('canvas1').getContext('2d');
-			window.myBar = new Chart(ctx, {
+			var ctx1 = document.getElementById('canvas1').getContext('2d');
+			var ctx2 = document.getElementById('canvas2').getContext('2d');
+
+			window.myBar = new Chart(ctx1, {
 				type: 'bar',
 				data: barChartData,
 				options: {
 					title: {
 						display: true,
-						text: 'Chart.js Bar Chart - Stacked'
+						text: ['Финансовые показатели', `Нажмите на название чтобы отключить визуализацию`]
 					},
 					tooltips: {
 						mode: 'index',
@@ -2057,24 +2180,47 @@ iframe {
 					responsive: true,
 					scales: {
 						xAxes: [{
-							stacked: true,
+							stacked: false,
 						}],
 						yAxes: [{
-							stacked: true
+							stacked: false
 						}]
 					}
 				}
 			});
-		};
 
-		document.getElementById('randomizeData').addEventListener('click', function() {
-			barChartData.datasets.forEach(function(dataset) {
-				dataset.data = dataset.data.map(function() {
-					return randomScalingFactor();
-				});
+			window.myLine = Chart.Line(ctx2, {
+				data: barChartData2,
+				options: {
+					responsive: true,
+					hoverMode: 'index',
+					stacked: false,
+					title: {
+						display: true,
+						text: 'Точка безубыточности'
+					},
+					scales: {
+						yAxes: [{
+							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+							display: true,
+							position: 'left',
+							id: 'y-axis-1',
+						}, 
+						{
+							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+							display: true,
+							position: 'left',
+							id: 'y-axis-1',
+
+							// grid line settings
+							gridLines: {
+								drawOnChartArea: false, // only want the grid lines for one axis to show up
+							},
+						}],
+					}
+				}
 			});
-			window.myBar.update();
-		});
+		};
 
 	</script>
 </body>
